@@ -1,0 +1,90 @@
+@font-face {
+  src: url(../../font/BeVietnam.ttf);
+  font-family: BeVietnam;
+}
+.form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  justify-content: flex-start;
+  width: 60rem;
+  padding: 3rem 3rem;
+  animation: popup 0.3s linear;
+}
+.category {
+  font-family: "BeVietnam";
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(214, 214, 214);
+}
+.content {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  margin: 2rem 0rem;
+  border: none;
+  font-family: "BeVietnam";
+  border: 1px solid rgb(214, 214, 214);
+}
+.file {
+  color: rgb(214, 214, 214);
+  font-size: 4rem;
+  width: 10rem;
+  height: 10rem;
+  border: 1px solid rgb(214, 214, 214);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 9rem;
+}
+.file input {
+  display: none;
+}
+.preview {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  overflow: auto;
+  position: relative;
+  flex-direction: row;
+}
+.preview img {
+  width: 10rem;
+  height: 10rem;
+  margin-right: 2px;
+  object-fit: cover;
+}
+.button {
+  fill: rgb(214, 214, 214);
+  background-size: contain;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+  transform: rotate(42deg);
+}
+.button:hover {
+  fill: rgb(255, 130, 130);
+  background-size: contain;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto;
+}
+.close {
+  position: absolute;
+  font-size: 1.4rem;
+  right: 0rem;
+  top: 0rem;
+  padding: 0.5rem 1rem;
+  background: rgb(221, 121, 121);
+  cursor: pointer;
+}
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
