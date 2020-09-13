@@ -2,6 +2,7 @@ import React from "react";
 import mime from "mime-types";
 import firebase from "../../firebase.utils";
 import uuidv4 from "uuid-v4";
+import Img from "react-optimized-image";
 import "./form.styles.css";
 class Form extends React.Component {
   constructor(props) {
@@ -130,8 +131,9 @@ class Form extends React.Component {
           <div className="preview">
             {files &&
               files.map((file) => {
+                console.log(file);
                 return (
-                  <img
+                  <Img
                     key={files.indexOf(file)}
                     src={URL.createObjectURL(file)}
                   />
