@@ -12,6 +12,7 @@
     "firebase": "^7.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-image-file-resizer": "^0.3.8",
     "react-optimized-image": "^0.4.1",
     "react-scripts": "3.4.3",
     "uuid-v4": "^0.1.0",

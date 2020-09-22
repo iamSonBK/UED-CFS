@@ -94,3 +94,18 @@
     transform: translateY(0px);
   }
 }
+@media (max-width: 768px) {
+  .name span {
+    font-size: 12rem;
+  }
+  .name .heart {
+    top: 0;
+    right: -8rem;
+    width: 10rem;
+  }
+  .name .job {
+    font-size: 3rem;
+    margin-top: 6rem;
+    margin-left: -3rem;
+  }
+} ;

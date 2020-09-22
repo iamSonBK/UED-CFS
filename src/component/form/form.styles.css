@@ -9,6 +9,7 @@
   background-color: white;
   justify-content: flex-start;
   width: 60rem;
+  max-width: 80%;
   padding: 3rem 3rem;
   animation: popup 0.3s linear;
 }

@@ -2,23 +2,30 @@ import React from "react";
 import mime from "mime-types";
 import firebase from "../../firebase.utils";
 import uuidv4 from "uuid-v4";
-import Img from "react-optimized-image";
 import "./form.styles.css";
+import Loading from "../loading/loading.component";
 class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      res: [],
+      length: 0,
       imageURL: [],
       name: "Tâm sự",
       content: "",
       isLoading: false,
       files: [],
+      isOverSize: false,
     };
   }
+
   addFile = (event) => {
     const files = Array.from(event.target.files);
     if (files) {
-      this.setState({ files });
+      this.setState({
+        files: this.state.files.concat(files),
+        length: files.length,
+      });
     }
   };
   handleChange = (event) => {
@@ -29,7 +36,6 @@ class Form extends React.Component {
   uploadFile = async () => {
     const { files } = this.state;
     const filePath = `${uuidv4()}.jpg`;
-    const imageRef = firebase.database().ref("images");
     const urlArr = [];
     this.setState({ isLoading: true });
     files.forEach((file) => {
@@ -61,6 +67,7 @@ class Form extends React.Component {
                 if (urlArr.length === files.length) {
                   this.sendFileMessage(urlArr);
                   this.setState({ isLoading: false });
+                  this.props.handleClick();
                 }
               });
           }
@@ -96,12 +103,12 @@ class Form extends React.Component {
   };
   render() {
     const { handleClick } = this.props;
-    const { content, name, files, isLoading } = this.state;
+    const { content, name, files, isLoading, isOverSize } = this.state;
     return (
       <React.Fragment>
-        {isLoading ? <h3>Loading.....</h3> : ""}
+        {isLoading ? <Loading /> : ""}
 
-        <form className="form">
+        <form className="form" onChange={this.handleChange}>
           <span className="close" onClick={handleClick}>
             &Chi;
           </span>
@@ -112,6 +119,7 @@ class Form extends React.Component {
             placeholder="Tên bạn là gì ?"
             onChange={this.handleChange}
             value={name}
+            required
           >
             <option value="Tâm sự">Tâm sự</option>
             <option value="Crush">Crush</option>
@@ -133,9 +141,10 @@ class Form extends React.Component {
               files.map((file) => {
                 console.log(file);
                 return (
-                  <Img
+                  <img
                     key={files.indexOf(file)}
                     src={URL.createObjectURL(file)}
+                    alt="can not preview"
                   />
                 );
               })}
