@@ -47,9 +47,7 @@ class Form extends React.Component {
         .put(file, metadata)
         .on(
           "state_changed",
-          (snap) => {
-            // console.log(snap);
-          },
+          (snap) => {},
           (err) => {
             console.error(err);
           },
@@ -90,8 +88,29 @@ class Form extends React.Component {
         content: this.state.content,
         fileURL: urlArr,
       })
+      .then(() => {})
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  sendMessage = () => {
+    firebase
+      .database()
+      .ref("messages")
+      .child("coffessions")
+      .push()
+      .set({
+        timestamp: firebase.database.ServerValue.TIMESTAMP,
+        user: {
+          id: "xxx",
+          name: "default",
+        },
+        name: this.state.name,
+        content: this.state.content,
+        fileURL: "",
+      })
       .then(() => {
-        console.log("Done");
+        this.props.handleClick();
       })
       .catch((err) => {
         console.error(err);
@@ -99,7 +118,7 @@ class Form extends React.Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.uploadFile();
+    this.state.files.length === 0 ? this.sendMessage() : this.uploadFile();
   };
   render() {
     const { handleClick } = this.props;
@@ -139,7 +158,6 @@ class Form extends React.Component {
           <div className="preview">
             {files &&
               files.map((file) => {
-                console.log(file);
                 return (
                   <img
                     key={files.indexOf(file)}
