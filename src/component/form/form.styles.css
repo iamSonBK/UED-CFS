@@ -78,6 +78,7 @@
   background: rgb(221, 121, 121);
   cursor: pointer;
 }
+
 @keyframes popup {
   0% {
     transform: scale(0);

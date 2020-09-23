@@ -94,6 +94,7 @@
     transform: translateY(0px);
   }
 }
+
 @media (max-width: 768px) {
   .name span {
     font-size: 12rem;

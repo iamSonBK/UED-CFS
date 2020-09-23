@@ -94,6 +94,7 @@ class Form extends React.Component {
       });
   };
   sendMessage = () => {
+    this.setState({ isLoading: true });
     firebase
       .database()
       .ref("messages")
@@ -116,9 +117,14 @@ class Form extends React.Component {
         console.error(err);
       });
   };
+  checkNull = (content) => {
+    return content !== "";
+  };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.state.files.length === 0 ? this.sendMessage() : this.uploadFile();
+    if (this.checkNull(this.state.content)) {
+      this.state.files.length === 0 ? this.sendMessage() : this.uploadFile();
+    }
   };
   render() {
     const { handleClick } = this.props;
