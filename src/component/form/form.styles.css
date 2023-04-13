@@ -2,40 +2,63 @@
   src: url(../../font/BeVietnam.ttf);
   font-family: BeVietnam;
 }
-.form {
+.form-wrapper {
   position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.22);
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: white;
-  justify-content: flex-start;
-  width: 60rem;
-  max-width: 80%;
+  background-color: #fff;
+  justify-content: center;
+  width: 50%;
   padding: 3rem 3rem;
-  animation: popup 0.3s linear;
+  border-radius: 10px;
+  animation: skew 0.3s linear;
 }
 .category {
-  font-family: "BeVietnam";
-  font-size: 1.2rem;
+  font-family: "BeVietnam", sans-serif;
+  font-size: 1.6rem;
   padding: 0.5rem 1rem;
   border: 1px solid rgb(214, 214, 214);
+  border-radius: 5px;
+  outline: none;
 }
 .content {
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  margin: 2rem 0rem;
-  border: none;
+  font-size: 1.6rem;
+  margin: 2rem 0rem 1rem 0rem;
   font-family: "BeVietnam";
+  border-radius: 5px;
   border: 1px solid rgb(214, 214, 214);
+  outline: none;
+}
+.content.error {
+  border: 1px solid rgb(216, 84, 84);
 }
 .file {
   color: rgb(214, 214, 214);
   font-size: 4rem;
+  aspect-ratio: 1;
   width: 10rem;
   height: 10rem;
   border: 1px solid rgb(214, 214, 214);
-  margin-bottom: 2rem;
   text-align: center;
-  line-height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.file:hover {
+  border: 1px solid rgb(179, 177, 177);
 }
 .file input {
   display: none;
@@ -43,50 +66,51 @@
 .preview {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   width: 100%;
+  height: 10rem;
   overflow: auto;
   position: relative;
   flex-direction: row;
+  margin-top: 1.5rem;
+  margin-bottom: 15px;
+  transition: none;
 }
 .preview img {
-  width: 10rem;
-  height: 10rem;
+  height: 100%;
   margin-right: 2px;
   object-fit: cover;
 }
-.button {
-  fill: rgb(214, 214, 214);
-  background-size: contain;
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto;
-  transform: rotate(42deg);
-}
-.button:hover {
-  fill: rgb(255, 130, 130);
-  background-size: contain;
-  width: 5rem;
-  height: 5rem;
-  margin: 0 auto;
-}
 .close {
   position: absolute;
-  font-size: 1.4rem;
-  right: 0rem;
-  top: 0rem;
-  padding: 0.5rem 1rem;
-  background: rgb(221, 121, 121);
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 0.5rem;
   cursor: pointer;
+  border-radius: 50%;
+  background-color: rgb(226, 226, 226);
 }
-
-@keyframes popup {
-  0% {
-    transform: scale(0);
+.close img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media only screen and (max-width: 700px) {
+  .form {
+    width: 95%;
+    height: 80%;
   }
-  70% {
-    transform: scale(0.8);
+  .preview {
+    height: 15rem;
+  }
+}
+@keyframes skew {
+  0% {
+    transform: rotateX(95deg);
   }
   100% {
-    transform: scale(1);
+    transform: rotateX(0);
   }
 }
